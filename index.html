@@ -4,87 +4,99 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Manda Bhargav | Personal Website</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f9f9f9;
       color: #333;
     }
+
     header {
       background-color: #1a202c;
       color: white;
-      padding: 2.5rem 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .navbar-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .navbar-buttons button {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .home-btn { background-color: #2d3748; color: white; }
+    .chat-btn { background-color: #25D366; color: white; }
+    .settings-btn { background-color: #4a5568; color: white; cursor: not-allowed; }
+    .faq-input {
+      padding: 0.5rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      background-color: #e2e8f0;
+      cursor: not-allowed;
+    }
+
+    .profile {
       text-align: center;
+      margin-top: 1rem;
     }
-    header img {
-      width: 160px;
-      height: 160px;
+
+    .profile img {
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid white;
-      margin-bottom: 1rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      border: 3px solid white;
     }
-    header h1 {
-      margin: 0.2rem 0;
-      font-size: 2rem;
+
+    .profile h1 {
+      margin: 0.5rem 0 0 0;
     }
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1.1rem;
-    }
+
     section {
-      max-width: 1000px;
+      max-width: 900px;
       margin: 2rem auto;
-      padding: 0 1.5rem;
-    }
-    .bio-box {
+      padding: 1rem;
       background-color: white;
-      border-left: 5px solid #1a202c;
-      padding: 1.2rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      font-size: 1.05rem;
-      line-height: 1.6;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     }
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
       margin-top: 2rem;
     }
+
     .card {
-      background-color: white;
+      background-color: #edf2f7;
       padding: 1rem;
-      border-radius: 14px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      transition: transform 0.2s, box-shadow 0.2s;
-      text-decoration: none;
-      color: inherit;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s ease;
     }
+
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      transform: scale(1.02);
+      background-color: #e2e8f0;
     }
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 0.75rem;
-    }
-    .card h3 {
-      margin: 0.5rem 0;
-      color: #1a202c;
-      font-size: 1.2rem;
-    }
-    .card p {
-      font-size: 0.95rem;
-      color: #555;
-    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -96,45 +108,54 @@
   </style>
 </head>
 <body>
+
   <header>
-    <img src="MEEEEE.jpg" alt="Manda Bhargav">
-    <h1>Manda Bhargav</h1>
-    <p>Student | Future AI & IT Entrepreneur</p>
+    <div class="navbar">
+      <div class="navbar-buttons">
+        <button class="home-btn" onclick="window.location.href='index.html'">🏠 Home</button>
+        <button class="chat-btn" onclick="window.open('https://wa.me/918790690209')">💬 Chat</button>
+        <button class="settings-btn" onclick="alert('Settings Page – Work in Progress 🚧')">⚙️ Settings</button>
+      </div>
+      <input type="text" class="faq-input" placeholder="Search FAQ (WIP)" onclick="alert('FAQ Search – Work in Progress 🚧')" disabled />
+    </div>
+
+    <div class="profile">
+      <img src="MEEEEE.jpg" alt="Manda Bhargav">
+      <h1>Manda Bhargav</h1>
+      <p>Student | Future AI & IT Entrepreneur</p>
+    </div>
   </header>
 
   <section>
-    <div class="bio-box">
+    <p>
       I'm a 10th grade student at Global Edge School, Madhapur. Passionate about AI, math,
       and science, I aspire to become an entrepreneur in the AI or IT sector. I thrive on
       creativity, logic, and innovation.
-    </div>
+    </p>
 
     <div class="cards">
-      <a href="coding.html" class="card">
-        <img src="https://i.imgur.com/gm8iQSy.jpg" alt="Coding">
+      <div class="card" onclick="window.location.href='coding.html'">
         <h3>💻 Coding</h3>
         <p>Comfortable with writing code, building projects, and problem-solving.</p>
-      </a>
-      <a href="speaking.html" class="card">
-        <img src="https://i.imgur.com/2YfTrqU.jpg" alt="Public Speaking">
+      </div>
+      <div class="card" onclick="window.location.href='speaking.html'">
         <h3>🎤 Public Speaking</h3>
         <p>Confident on stage and skilled at expressing ideas clearly and effectively.</p>
-      </a>
-      <a href="design.html" class="card">
-        <img src="https://i.imgur.com/KjKLMzO.jpg" alt="Design">
+      </div>
+      <div class="card" onclick="window.location.href='design.html'">
         <h3>🎨 Design</h3>
         <p>Enjoy creating aesthetic layouts and user-friendly experiences.</p>
-      </a>
-      <a href="writing.html" class="card">
-        <img src="https://i.imgur.com/g1pAFmu.jpg" alt="Writing">
+      </div>
+      <div class="card" onclick="window.location.href='writing.html'">
         <h3>✍ Writing & Research</h3>
         <p>Skilled in writing structured content and exploring topics deeply.</p>
-      </a>
+      </div>
     </div>
   </section>
 
   <footer>
     © 2025 Manda Bhargav | www.BhargavManda.com
   </footer>
+
 </body>
 </html>
