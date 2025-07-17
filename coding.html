@@ -1,57 +1,455 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Work In Progress | Manda Bhargav</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      color: #333;
-    }
-    .message {
-      text-align: center;
-      padding: 2rem;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-    }
-    .message h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .message p {
-      font-size: 1rem;
-      color: #777;
-    }
-    .back {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.6rem 1rem;
-      background: #1a202c;
-      color: white;
-      text-decoration: none;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-    .back:hover {
-      background: #2d3748;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Python Code Examples</title>
+    <style>
+        /* General Website Styles - ADAPT THESE TO MATCH YOUR HOMEPAGE THEME */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Example font - CHANGE THIS */
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Light greyish blue for a modern look - CHANGE THIS */
+            color: #333; /* Dark grey text - CHANGE THIS */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header styles - MAKE SURE THIS MATCHES YOUR HOMEPAGE'S HEADER EXACTLY */
+        header {
+            background-color: #282c34; /* Dark charcoal/navy for header - CHANGE THIS */
+            color: #fff;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            text-align: center;
+            color: #61dafb; /* A light blue accent for the title - CHANGE THIS */
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 25px; /* Space between nav items */
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 5px 10px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        header nav a:hover {
+            color: #61dafb; /* Hover color - CHANGE THIS */
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+        }
+
+        /* Footer styles - MAKE SURE THIS MATCHES YOUR HOMEPAGE'S FOOTER EXACTLY */
+        footer {
+            background-color: #282c34; /* Same as header for consistency - CHANGE THIS */
+            color: #bbb;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 40px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        /* Specific styles for the code examples section */
+        .code-section-main {
+            padding: 40px 0;
+        }
+
+        .code-section-main .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive grid */
+            gap: 30px; /* Space between code boxes */
+        }
+
+        .code-box {
+            background-color: #ffffff; /* White background for code boxes - CHANGE THIS */
+            border: 1px solid #e0e0e0; /* Light border - CHANGE THIS */
+            border-radius: 12px; /* Rounded edges */
+            padding: 25px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* More prominent shadow - CHANGE THIS */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column; /* Stack heading and code vertically */
+            justify-content: space-between; /* Push code to bottom if content is short */
+        }
+
+        .code-box:hover {
+            transform: translateY(-8px); /* Lift effect on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+        }
+
+        .code-box h2 {
+            color: #007bff; /* A vibrant blue for code titles - CHANGE THIS */
+            font-size: 1.6em;
+            margin-top: 0;
+            margin-bottom: 18px;
+            border-bottom: 2px solid #e9ecef; /* Subtle line under title - CHANGE THIS */
+            padding-bottom: 10px;
+        }
+
+        /* Styling for the <pre> (preformatted text) block which holds the <code> */
+        .code-box pre {
+            background-color: #2e3440; /* Darker background for code block (Nord theme like) - CHANGE THIS */
+            color: #eceff4; /* Light text for code - CHANGE THIS */
+            padding: 18px;
+            border-radius: 8px; /* Slightly rounded code block inside the box */
+            overflow-x: auto; /* Enable horizontal scrolling for long lines */
+            white-space: pre-wrap; /* Preserve whitespace and wrap lines */
+            word-break: break-word; /* Break long words */
+            font-size: 0.9em;
+            line-height: 1.5;
+            flex-grow: 1; /* Allows the code block to expand and fill space */
+        }
+
+        /* Styling for the <code> tag itself */
+        .code-box code {
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', monospace; /* Preferred coding fonts - CHANGE THIS */
+        }
+
+        /* Optional: Highlight specific parts of code for better readability (manual application or use a JS highlighter) */
+        /* .code-box code .keyword { color: #88c0d0; } */
+        /* .code-box code .string { color: #a3be8c; } */
+        /* .code-box code .comment { color: #616e7f; font-style: italic; } */
+        /* .code-box code .number { color: #b48ead; } */
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .code-section-main .container {
+                grid-template-columns: 1fr; /* Stack boxes vertically on small screens */
+                padding: 0 15px;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            header nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="message">
-    <h1>🚧 Work in Progress</h1>
-    <p>This section is still under construction. Come back soon!</p>
-    <a href="index.html" class="back">← Back to Home</a>
-  </div>
+    <header>
+        <div class="container">
+            <h1>My Python Code Examples</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="code-section-main">
+        <div class="container">
+            <div class="code-box">
+                <h2>1. Hello World!</h2>
+                <pre><code class="language-python">
+# A simple "Hello, World!" program
+print("Hello, World!")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>2. Basic Arithmetic Operations</h2>
+                <pre><code class="language-python">
+# Basic arithmetic operations
+a = 15
+b = 7
+print(f"Sum: {a + b}")
+print(f"Difference: {a - b}")
+print(f"Product: {a * b}")
+print(f"Quotient: {a / b:.2f}") # Format to 2 decimal places
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>3. List Manipulation</h2>
+                <pre><code class="language-python">
+# Creating and manipulating a list
+my_list = [10, 20, 30, 40, 50]
+my_list.append(60)
+print(f"Updated list: {my_list}")
+print(f"First element: {my_list[0]}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>4. String Reversal</h2>
+                <pre><code class="language-python">
+# Reversing a string
+s = "Python"
+reversed_s = s[::-1]
+print(f"Original: {s}, Reversed: {reversed_s}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>5. Factorial Calculation (Recursive)</h2>
+                <pre><code class="language-python">
+# Function to calculate factorial recursively
+def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
+
+print(f"Factorial of 5: {factorial(5)}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>6. Fibonacci Sequence</h2>
+                <pre><code class="language-python">
+# Generate Fibonacci sequence up to n terms
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        print(a, end=" ")
+        a, b = b, a + b
+
+print("Fibonacci sequence (5 terms):")
+fibonacci(5)
+print() # For a new line after the sequence
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>7. Dictionary Iteration</h2>
+                <pre><code class="language-python">
+# Iterating through a dictionary
+student = {
+    "name": "Jane Doe",
+    "age": 22,
+    "major": "Computer Science"
+}
+for key, value in student.items():
+    print(f"{key}: {value}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>8. Prime Number Check</h2>
+                <pre><code class="language-python">
+# Check if a number is prime
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+print(f"Is 11 prime? {is_prime(11)}")
+print(f"Is 10 prime? {is_prime(10)}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>9. Palindrome Check</h2>
+                <pre><code class="language-python">
+# Check if a string is a palindrome
+def is_palindrome(text):
+    return text == text[::-1]
+
+print(f"Is 'madam' a palindrome? {is_palindrome('madam')}")
+print(f"Is 'hello' a palindrome? {is_palindrome('hello')}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>10. Bubble Sort Algorithm</h2>
+                <pre><code class="language-python">
+# Bubble Sort implementation
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+    return arr
+
+unsorted_list = [64, 34, 25, 12, 22, 11, 90]
+print(f"Sorted list: {bubble_sort(unsorted_list)}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>11. Simple Class Definition</h2>
+                <pre><code class="language-python">
+# A basic Python class
+class Car:
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+
+    def display_info(self):
+        print(f"Car: {self.make} {self.model}")
+
+my_car = Car("Toyota", "Camry")
+my_car.display_info()
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>12. Basic File Read</h2>
+                <pre><code class="language-python">
+# Reading content from a file
+try:
+    with open("sample.txt", "r") as f:
+        content = f.read()
+        print("File content:\n", content)
+except FileNotFoundError:
+    print("Error: sample.txt not found. Please create it.")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>13. Current Date and Time</h2>
+                <pre><code class="language-python">
+# Displaying current date and time
+import datetime
+
+now = datetime.datetime.now()
+print(f"Current date and time: {now.strftime('%Y-%m-%d %H:%M:%S')}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>14. Random Number Generation</h2>
+                <pre><code class="language-python">
+# Generating a random number
+import random
+
+random_num = random.randint(1, 100)
+print(f"Random number between 1 and 100: {random_num}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>15. List Comprehension for Evens</h2>
+                <pre><code class="language-python">
+# Using list comprehension to get even numbers
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+even_numbers = [num for num in numbers if num % 2 == 0]
+print(f"Even numbers: {even_numbers}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>16. Decorator Function</h2>
+                <pre><code class="language-python">
+# A simple decorator
+def greet_decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Hello from decorator!")
+        return func(*args, **kwargs)
+    return wrapper
+
+@greet_decorator
+def say_name(name):
+    print(f"My name is {name}.")
+
+say_name("Alice")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>17. Lambda Function (Anonymous)</h2>
+                <pre><code class="language-python">
+# Using a lambda function
+add_two = lambda x: x + 2
+print(f"5 + 2 = {add_two(5)}")
+
+# Using lambda with map
+numbers = [1, 2, 3, 4]
+squared = list(map(lambda x: x*x, numbers))
+print(f"Squared numbers: {squared}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>18. Set Operations</h2>
+                <pre><code class="language-python">
+# Demonstrating set operations
+set1 = {1, 2, 3, 4}
+set2 = {3, 4, 5, 6}
+
+print(f"Union: {set1.union(set2)}")
+print(f"Intersection: {set1.intersection(set2)}")
+print(f"Difference (set1 - set2): {set1.difference(set2)}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>19. Simple HTTP Request (Requires 'requests' library)</h2>
+                <pre><code class="language-python">
+# Making a simple HTTP GET request (requires 'requests' library: pip install requests)
+# This code won't run directly in a browser HTML, but it's a common Python example.
+import requests
+
+try:
+    response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
+    response.raise_for_status() # Raise an HTTPError for bad responses (4xx or 5xx)
+    data = response.json()
+    print(f"Fetched data: {data['title']}")
+except requests.exceptions.RequestException as e:
+    print(f"Error fetching data: {e}")
+                </code></pre>
+            </div>
+
+            <div class="code-box">
+                <h2>20. Basic Error Handling (try-except)</h2>
+                <pre><code class="language-python">
+# Handling potential errors
+try:
+    num1 = int(input("Enter first number: "))
+    num2 = int(input("Enter second number: "))
+    result = num1 / num2
+    print(f"Result: {result}")
+except ValueError:
+    print("Invalid input! Please enter numbers only.")
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero!")
+                </code></pre>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Your Name. All rights reserved.</p>
+            </div>
+    </footer>
 </body>
 </html>
